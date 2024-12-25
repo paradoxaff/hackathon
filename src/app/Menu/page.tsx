@@ -22,7 +22,7 @@ const Menu = () => {
 
                     />
                 </div>
-
+                
                 {/* Menu Section */}
                 <div className="w-full lg:w-1/2 lg:pl-10 pt-10 lg:p-5">
                     <div className="">

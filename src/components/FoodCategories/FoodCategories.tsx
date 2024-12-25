@@ -49,7 +49,7 @@ const FoodCategoryList = ({ foodCards }: FoodCategoryListProps) => {
 
           {/* Button */}
           <Link
-            href="/menu"
+            href="/Menu"
             className="absolute bottom-4 left-4 text-white bg-orange-500 px-4 py-2 rounded-lg z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           >
             {category.buttonText}

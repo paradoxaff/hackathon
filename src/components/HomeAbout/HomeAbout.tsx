@@ -38,7 +38,7 @@ const HomeAbout = () => {
 
         {/* Read More Button */}
         <Link
-          href="/about"
+          href="/About"
           className="inline-block bg-transparent border border-orange-500 text-orange-500 py-2 px-6 rounded-full font-medium hover:bg-orange-500 hover:text-black transition duration-300"
         >
           Read more

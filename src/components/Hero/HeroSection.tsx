@@ -33,7 +33,7 @@ const HeroSection = () => {
             unde facere consectetur dolor iure soluta.
           </p>
           <Link
-            href="/menu"
+            href="/Menu"
             className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-medium py-3 px-6 rounded-full transition duration-300"
           >
             See Menu

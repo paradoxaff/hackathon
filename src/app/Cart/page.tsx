@@ -1,4 +1,4 @@
-
+"use client"
 
 import Image from 'next/image'
 import {
@@ -12,11 +12,13 @@ import {
 import { Input } from '@/components/ui/input'
 import MainBreadcum from '@/components/Breadcum/MainBreadcum'
 import Link from 'next/link'
+import { useState } from 'react'
 
 
 
 
 const Cart = () => {
+    const [quantity, setQuantity] = useState("01");
     return (
         <div>
             <MainBreadcum name='Shopping Cart' pageName='Shopping Cart'/>
@@ -41,7 +43,7 @@ const Cart = () => {
                             </TableCell>
                             <TableCell className='pl-4'>$21</TableCell>
                             <TableCell className='pl-4'>
-                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={"01"} type='number' />
+                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={quantity} onChange={(e) => setQuantity(e.target.value)}  type='number' />
                             </TableCell>
                             <TableCell className='pl-4'>$21</TableCell>
                             <TableCell className='pl-4'>X</TableCell>
@@ -55,7 +57,7 @@ const Cart = () => {
                             </TableCell>
                             <TableCell className='pl-4'>$41</TableCell>
                             <TableCell className='pl-4'>
-                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={"01"} type='number' />
+                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={quantity} onChange={(e) => setQuantity(e.target.value)} type='number' />
                             </TableCell>
                             <TableCell className='pl-4'>$51</TableCell>
                             <TableCell className='pl-4'>X</TableCell>
@@ -69,7 +71,7 @@ const Cart = () => {
                             </TableCell>
                             <TableCell className='pl-4'>$38</TableCell>
                             <TableCell className='pl-4'>
-                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={"01"} type='number' />
+                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={quantity} onChange={(e) => setQuantity(e.target.value)}  type='number' />
                             </TableCell>
                             <TableCell className='pl-4'>$38</TableCell>
                             <TableCell className='pl-4'>X</TableCell>
@@ -83,7 +85,7 @@ const Cart = () => {
                             </TableCell>
                             <TableCell className='pl-4'>$38</TableCell>
                             <TableCell className='pl-4'>
-                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={"01"} type='number' />
+                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs'  value={quantity} onChange={(e) => setQuantity(e.target.value)}  type='number' />
                             </TableCell>
                             <TableCell className='pl-4'>$38</TableCell>
                             <TableCell className='pl-4'>X</TableCell>

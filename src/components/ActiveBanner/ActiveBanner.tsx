@@ -29,7 +29,7 @@ const ActiveBanner = () => {
           <div className="flex justify-start space-x-6">
             {/* Read More Button */}
             <a
-              href="/about"
+              href="/About"
               className="py-3 px-4 border-2 border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white rounded-full"
             >
               Read More
