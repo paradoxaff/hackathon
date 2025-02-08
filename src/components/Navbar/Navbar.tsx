@@ -1,12 +1,53 @@
-
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaShoppingCart, FaUserAlt, FaBars, FaTimes, FaSearch } from "react-icons/fa";
+import { client } from "@/sanity/lib/client";
+
+// Define the Product type
+type Product = {
+  _id: string;
+  name: string;
+  slug: {
+    current: string;
+  };
+};
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  // Fetch products from Sanity on component mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const query = `*[_type == "food"]{ _id, name }`;
+      const products = await client.fetch<Product[]>(query);
+      setProducts(products);
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Handle search input change
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    // Filter products based on the search query
+    if (query) {
+      const filteredProducts = products
+        .filter((product) =>
+          product.name.toLowerCase().includes(query.toLowerCase())
+        )
+        .slice(0, 5); // Limit to 5 results
+      setSearchResults(filteredProducts);
+    } else {
+      setSearchResults([]);
+    }
+  };
 
   return (
     <header className="bg-black text-white">
@@ -37,7 +78,7 @@ export default function Navbar() {
             </div>
           </div>
           <Link href="/Shop" className="hover:text-orange-500">
-          Shop
+            Shop
           </Link>
           <Link href="/SignUp" className="hover:text-orange-500">
             Contact
@@ -60,24 +101,38 @@ export default function Navbar() {
               type="text"
               placeholder="Search..."
               className="bg-gray-900 text-white px-4 py-2 pl-10 rounded-full focus:outline-none border border-orange-500"
+              value={searchQuery}
+              onChange={handleSearch}
             />
+            {/* Display search results */}
+            {searchResults.length > 0 && (
+              <div className="absolute top-12 left-0 bg-gray-800 text-white w-full rounded-lg shadow-lg z-20">
+                {searchResults.map((product) => (
+                  <Link
+                    key={product._id}
+                    href={`/detail/${product._id}`} // Use the product slug for routing
+                    className="block px-4 py-2 hover:bg-gray-700"
+                  >
+                    {product.name}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Cart Icon */}
-
-          <Link href='Cart'>
-          <button className="text-white-500">
-            <FaShoppingCart size={20} />
-          </button></Link>
-          
+          <Link href="/Cart">
+            <button className="text-white-500">
+              <FaShoppingCart size={20} />
+            </button>
+          </Link>
 
           {/* User Icon */}
-          <Link href='/SignUp'>
-          <button className="text-white-500">
-            <FaUserAlt size={20} />
-          </button>
+          <Link href="/SignUp">
+            <button className="text-white-500">
+              <FaUserAlt size={20} />
+            </button>
           </Link>
-          
         </div>
 
         {/* Mobile Hamburger Menu */}
@@ -118,21 +173,37 @@ export default function Navbar() {
               type="text"
               placeholder="Search..."
               className="bg-gray-900 text-white px-4 py-2 pl-10 rounded-full focus:outline-none border border-orange-500"
+              value={searchQuery}
+              onChange={handleSearch}
             />
+            {/* Display search results */}
+            {searchResults.length > 0 && (
+              <div className="absolute top-12 left-0 bg-gray-800 text-white w-full rounded-lg shadow-lg z-20">
+                {searchResults.map((product) => (
+                  <Link
+                    key={product._id}
+                    href={`/product/${product.name}`} // Use the product slug for routing
+                    className="block px-4 py-2 hover:bg-gray-700"
+                  >
+                    {product.name}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Icons (Mobile) */}
           <div className="flex justify-around mt-4 space-x-4">
-            <Link href='Cart'>
-            <button className="text-white-500">
-              <FaShoppingCart size={20} />
-            </button></Link>
-            
-            <Link href='/SignUp'>
-          <button className="text-white-500">
-            <FaUserAlt size={20} />
-          </button>
-          </Link>
+            <Link href="/Cart">
+              <button className="text-white-500">
+                <FaShoppingCart size={20} />
+              </button>
+            </Link>
+            <Link href="/SignUp">
+              <button className="text-white-500">
+                <FaUserAlt size={20} />
+              </button>
+            </Link>
           </div>
         </div>
       )}

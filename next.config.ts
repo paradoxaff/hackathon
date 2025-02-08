@@ -6,8 +6,13 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'i.pravatar.cc',  // Add the domain hosting your images
-        pathname: '/**',  // Accepts all paths under the given domain
+        hostname: 'i.pravatar.cc',
+        pathname: '/**',  
+      },
+      {
+        protocol: 'https',
+        hostname:  "cdn.sanity.io",
+        pathname: '/**',  
       },
     ],
   },

@@ -2,8 +2,7 @@ import MainBreadcum from "@/components/Breadcum/MainBreadcum";
 import Link from "next/link";
 import { FaEnvelope, FaLock } from "react-icons/fa"; // React Icons
 
-
- const LogIn = () => {                                                                            
+ const LogIn = () => {                                                                        
   return (
     <>
     <MainBreadcum name='Sign In' pageName='Sign In'/>
